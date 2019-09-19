@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.overstar.order.mapper.OrderStarDetailMapper">
+  <resultMap id="BaseResultMap" type="com.overstar.order.export.domain.OrderStarDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="sku_main_pic" jdbcType="VARCHAR" property="skuMainPic" />
+    <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="total_money" jdbcType="DECIMAL" property="totalMoney" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.overstar.order.export.domain.OrderStarDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="sku_main_pic" jdbcType="VARCHAR" property="skuMainPic" />
+    <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="total_money" jdbcType="DECIMAL" property="totalMoney" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.overstar.order.export.domain.OrderStarDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="sku_main_pic" jdbcType="VARCHAR" property="skuMainPic" />
+    <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />
+    <result column="market_price" jdbcType="INTEGER" property="marketPrice" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="total_money" jdbcType="INTEGER" property="totalMoney" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.overstar.order.export.domain.OrderStarDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="orderId" jdbcType="BIGINT" property="orderid" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="sku_main_pic" jdbcType="VARCHAR" property="skuMainPic" />
+    <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />
+    <result column="market_price" jdbcType="INTEGER" property="marketPrice" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="total_money" jdbcType="INTEGER" property="totalMoney" />
+  </resultMap>
+</mapper>
