@@ -224,7 +224,7 @@ public class OrderBase implements Serializable {
      * 退换货状态
      */
     @Column(name = "`sale_return_tate`")
-    private Byte saleReturnTate;
+    private Byte saleReturnState;
 
     /**
      * (可选项)

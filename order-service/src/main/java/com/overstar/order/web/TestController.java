@@ -2,7 +2,6 @@ package com.overstar.order.web;
 
 import com.overstar.order.abs.OrderFactory;
 import com.overstar.order.export.constants.EnumOrderType;
-import com.overstar.order.export.constants.ErrorCodeEnum;
 import com.overstar.order.export.domain.OrderBase;
 import com.overstar.order.export.vo.Ret;
 import com.overstar.order.export.vo.ShoppingCart;
@@ -49,7 +48,7 @@ public class TestController {
         base.setShipSendTime(System.nanoTime());
         base.setShipSendTime(System.nanoTime());
         base.setOrderFrom((byte)2);
-        base.setSaleReturnTate((byte)11);
+        base.setSaleReturnState((byte)11);
         return base;
     }
 
@@ -61,7 +60,7 @@ public class TestController {
             ShoppingCart shoppingCart = new ShoppingCart();
             shoppingCart.setAmount(i);
             shoppingCart.setCreateTime(System.currentTimeMillis());
-            shoppingCart.setProductId(2005l);
+            shoppingCart.setProductId(2005L);
             shoppingCart.setSsoId(2006l);
             shoppingCart.setName("一元购");
             shoppingCart.setSelected((byte)1);

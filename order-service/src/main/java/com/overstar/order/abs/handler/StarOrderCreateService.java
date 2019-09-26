@@ -1,5 +1,6 @@
 package com.overstar.order.abs.handler;
 
+import com.overstar.es.api.IOrderIndexService;
 import com.overstar.order.abs.AbstractOrderCreate;
 import com.overstar.order.export.constants.ErrorCodeEnum;
 import com.overstar.order.export.constants.OrderStateEnum;
@@ -36,6 +37,8 @@ public class StarOrderCreateService extends AbstractOrderCreate {
     private OrderBaseMapper orderBaseMapper;
     @Autowired
     private OrderStarDetailMapper detailMapper;
+    @Autowired
+    public IOrderIndexService indexService;
 
 
     @Override
@@ -191,6 +194,9 @@ public class StarOrderCreateService extends AbstractOrderCreate {
                 detail.setOrderId(id);
             }
             detailMapper.insertList(details);
+
+            boolean b = indexService.indexOrderInfo(orderBase, details);
+            System.out.println(b+"==================================");
 
         }catch (Exception e){
             e.printStackTrace();
