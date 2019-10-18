@@ -74,6 +74,18 @@
             <groupId>com.overstar</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--rocketMq-->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-all</artifactId>
+            <version>2.0.4-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
