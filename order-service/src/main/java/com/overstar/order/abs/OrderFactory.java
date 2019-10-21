@@ -22,8 +22,8 @@ import java.util.Map;
 public class OrderFactory {
 
     @Autowired
-    private Map<String, IOrderService> autoMap;
-    private static HashMap<EnumOrderType, IOrderService> orderServiceMap = new HashMap<>();
+    private Map<String, IOrderStepService> autoMap;
+    private static HashMap<EnumOrderType, IOrderStepService> orderServiceMap = new HashMap<>();
 
     /**
      * 初始化服务
@@ -31,18 +31,18 @@ public class OrderFactory {
     @PostConstruct
     private void initOrderServer() {
         //这里直接直接autowired
-        Map<String, IOrderService> beans = autoMap;
+        Map<String, IOrderStepService> beans = autoMap;
         if (CollectionUtils.isEmpty(beans)) {
             throw new OrderException(ErrorCodeEnum.ORDER_INIT_ERROR);
         }
         orderServiceMap.clear();
-        beans.forEach((s, iOrderService) -> {
-            if (iOrderService.orderCategory() == null) return;
-            if (orderServiceMap.containsKey(iOrderService.orderCategory())) {
-                throw new RuntimeException(iOrderService.getClass().getName() + ", handlerType return value repeat with "
-                        + orderServiceMap.get(iOrderService.orderCategory()).getClass().getName());
+        beans.forEach((s, iOrderStepService) -> {
+            if (iOrderStepService.orderCategory() == null) return;
+            if (orderServiceMap.containsKey(iOrderStepService.orderCategory())) {
+                throw new RuntimeException(iOrderStepService.getClass().getName() + ", handlerType return value repeat with "
+                        + orderServiceMap.get(iOrderStepService.orderCategory()).getClass().getName());
             }
-            orderServiceMap.put(iOrderService.orderCategory(), iOrderService);
+            orderServiceMap.put(iOrderStepService.orderCategory(), iOrderStepService);
         });
 
     }
@@ -51,8 +51,8 @@ public class OrderFactory {
 
     public long create(OrderCreateParamBase createParamBase) {
         EnumOrderType orderCategory = createParamBase.getOrderCategory();
-        IOrderService iOrderService = orderServiceMap.get(orderCategory);
-        return iOrderService.orderCreate(createParamBase);
+        IOrderStepService iOrderStepService = orderServiceMap.get(orderCategory);
+        return iOrderStepService.orderCreate(createParamBase);
     }
 
 }

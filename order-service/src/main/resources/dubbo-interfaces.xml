@@ -13,7 +13,8 @@
 	<!-- 使用${}引用配置项 -->
 	<dubbo:provider port="-1" filter="dubboServer" retries="0" />
 
-	<dubbo:reference interface="com.overstar.es.api.IOrderIndexService" id="iOrderService"  group="${dubbo.group}" retries="0" version="${dubbo.version}" check="false" timeout="${dubbo.timeout}"/>
+	<dubbo:reference interface="com.overstar.search.export.api.IOrderIndexService" id="iOrderStepService"  group="${dubbo.group}" retries="0" version="${dubbo.version}" check="false" timeout="${dubbo.timeout}"/>
+	<dubbo:service interface="com.overstar.order.export.api.IOrderService"  id="iOrderService"  ref="orderService" group="${dubbo.group}" retries="0" version="${dubbo.version}"  timeout="${dubbo.timeout}"/>
 
 	<!-- 消费方调用过程缺省拦截器，将拦截所有reference 
 	<dubbo:consumer filter="dubboClient"/>

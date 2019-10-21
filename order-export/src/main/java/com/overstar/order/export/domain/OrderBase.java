@@ -1,7 +1,6 @@
 package com.overstar.order.export.domain;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,6 +8,9 @@ import javax.persistence.*;
 
 @Table(name = "`order_base`")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class OrderBase implements Serializable {
     /**
      * (必填项)

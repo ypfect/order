@@ -11,7 +11,7 @@ import com.overstar.order.export.vo.OrderCreateParamBase;
  * @Author stanley.yu
  * @Date 2019/9/18 19:21
  */
-public abstract class AbstractOrderCreate implements IOrderService{
+public abstract class AbstractOrderStepCreate implements IOrderStepService {
 
     @Override
     public long orderCreate(OrderCreateParamBase orderCreateParamBase) {

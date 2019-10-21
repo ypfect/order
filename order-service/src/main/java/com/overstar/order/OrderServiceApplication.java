@@ -3,10 +3,11 @@ package com.overstar.order;
 import com.overstar.order.conf.ApplicationEventListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import tk.mybatis.spring.annotation.MapperScan;
 
-@SpringBootApplication
 @MapperScan("com.overstar.order.mapper")
+@SpringBootApplication
 public class OrderServiceApplication {
 
     public static void main(String[] args) {
@@ -17,3 +18,4 @@ public class OrderServiceApplication {
     }
 
 }
+

@@ -9,7 +9,7 @@ import com.overstar.order.export.vo.OrderCreateParamBase;
  * @Author stanley.yu
  * @Date 2019/9/18 15:53
  */
-public interface IOrderService {
+public interface IOrderStepService {
 
     long orderCreate(OrderCreateParamBase orderCreateParamBase);
 

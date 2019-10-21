@@ -1,8 +1,7 @@
 package com.overstar.order.abs.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.overstar.es.api.IOrderIndexService;
-import com.overstar.order.abs.AbstractOrderCreate;
+import com.overstar.order.abs.AbstractOrderStepCreate;
 import com.overstar.order.abs.MQQueueSelector;
 import com.overstar.order.export.constants.ErrorCodeEnum;
 import com.overstar.order.export.constants.OrderStateEnum;
@@ -16,13 +15,9 @@ import com.overstar.order.export.vo.StarOrderCreateParam;
 import com.overstar.order.mapper.OrderBaseMapper;
 import com.overstar.order.mapper.OrderStarDetailMapper;
 import com.overstar.order.utils.CodeGenerateUtils;
+import com.overstar.search.export.api.IOrderIndexService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.rocketmq.client.consumer.MessageSelector;
-import org.apache.rocketmq.client.producer.MessageQueueSelector;
-import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
-import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +39,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
-public class StarOrderCreateService extends AbstractOrderCreate {
+public class StarOrderCreateStepService extends AbstractOrderStepCreate {
 
     @Autowired
     private OrderBaseMapper orderBaseMapper;
@@ -196,7 +191,7 @@ public class StarOrderCreateService extends AbstractOrderCreate {
     @Override
     @Transactional
     public boolean oderCreateHandler(OrderCreateParamBase orderCreateParamBase) {
-        int insert= 0;
+        int insert = 0;
         try {
             log.info("订单数据持久化,主订单，订单详情...");
             StarOrderCreateParam paramBase = (StarOrderCreateParam) orderCreateParamBase;
@@ -214,7 +209,7 @@ public class StarOrderCreateService extends AbstractOrderCreate {
 //            boolean b = indexService.indexOrderInfo(orderBase, details);
 //            System.out.println(b+"==================================");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             //todo 删除订单信息和详细信息
             return false;
@@ -232,6 +227,7 @@ public class StarOrderCreateService extends AbstractOrderCreate {
      * 加入redis延时队列，
      * 倒计时发送短信提醒支付，发送消息到notice系统
      * 到时间触发取消操作
+     *
      * @param orderCreateParamBase
      * @return
      */
@@ -242,27 +238,56 @@ public class StarOrderCreateService extends AbstractOrderCreate {
         Message<String> message = MessageBuilder
                 .withPayload(JSON.toJSONString(orderCreateParamBase))
                 .setHeader("oj8k", "吃了！")
-                .setHeader(RocketMQHeaders.MESSAGE_ID,"C320320320320")
-                .setHeader(RocketMQHeaders.KEYS,"keya key")
-                .setHeader(RocketMQHeaders.TRANSACTION_ID,"320320320320")
+                .setHeader(RocketMQHeaders.MESSAGE_ID, "C320320320320")
+                .setHeader(RocketMQHeaders.KEYS, "keya key")
+                .setHeader(RocketMQHeaders.TRANSACTION_ID, "320320320320")
                 .build();
         //只能发送到单个tag，如果需要整个topic都可以收到的话，可以不指定tag
         String tags = "order_create";
-        String topicTags="testMQ:"+ tags;
+        String topicTags = "testMQ:" + tags;
 
-        //设置生产者发布选择器
-        rocketMQTemplate.setMessageQueueSelector(new MQQueueSelector());
-        rocketMQTemplate.asyncSendOrderly(topicTags, message, String.valueOf(320320320), new SendCallback() {
-            @Override
-            public void onSuccess(SendResult sendResult) {
-                log.info("消息发送成功！res={}",JSON.toJSONString(sendResult));
-            }
+//        //设置生产者发布选择器
+//        rocketMQTemplate.setMessageQueueSelector(new MQQueueSelector());
+//        rocketMQTemplate.asyncSendOrderly(topicTags, message, String.valueOf(320320320), new SendCallback() {
+//            @Override
+//            public void onSuccess(SendResult sendResult) {
+//                log.info("消息发送成功！res={}", JSON.toJSONString(sendResult));
+//            }
+//
+//            @Override
+//            public void onException(Throwable throwable) {
+//                log.error("消息发送失败", throwable);
+//            }
+//        }, 2000);
 
-            @Override
-            public void onException(Throwable throwable) {
-                log.error("消息发送失败",throwable);
-            }
-        },2000);
+        sendScheduldeMsg();
         return true;
+    }
+
+
+    /**
+     * 发送延时消息
+     */
+    public void sendScheduldeMsg() {
+        OrderBase.OrderBaseBuilder orderBaseBuilder = OrderBase.builder()
+                .digest("测试订单")
+                .orderNo("3205581174581")
+                .digest("简单的备注秒速")
+                .couponMoney(new BigDecimal(1.22))
+                .finishedTime(new Date().getTime());
+
+        Message<String> message = MessageBuilder
+                .withPayload(JSON.toJSONString(orderBaseBuilder.build()))
+                .setHeader(RocketMQHeaders.MESSAGE_ID, "C320320320320")
+                .setHeader(RocketMQHeaders.KEYS, "key")
+                .setHeader(RocketMQHeaders.TRANSACTION_ID, "320320320320")
+                .build();
+
+        String tags = "order_create";
+        String topicTags = "testMQ:" + tags;
+
+        rocketMQTemplate.setMessageQueueSelector(new MQQueueSelector());
+        SendResult sendResult = rocketMQTemplate.syncSend(topicTags, message, 2000, 3);
+
     }
 }

@@ -3,13 +3,15 @@ package com.overstar.order.export.vo;
 import com.overstar.order.export.constants.ErrorCodeEnum;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Description
  * @Author stanley.yu
  * @Date 2019/9/19 11:08
  */
 @Data
-public class Ret {
+public class Ret implements Serializable {
     private String msg;
     private Integer code;
     private Object data;

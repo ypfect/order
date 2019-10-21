@@ -4,6 +4,7 @@ import com.overstar.order.export.api.IOrderService;
 import com.overstar.order.export.domain.OrderBase;
 import com.overstar.order.export.domain.PayBill;
 import com.overstar.order.export.vo.Ret;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
@@ -12,10 +13,11 @@ import java.util.Map;
  * @Author stanley.yu
  * @Date 2019/9/19 14:22
  */
+@Service
 public class OrderService implements IOrderService {
     @Override
     public Ret create(OrderBase formOrderBase, Long addressId, Long billId) {
-        return null;
+        return Ret.success("下单成功！",200);
     }
 
     @Override
