@@ -1,9 +1,10 @@
 package com.overstar.order.service;
 
+import com.overstar.core.exception.BaseException;
+import com.overstar.core.vo.Result;
 import com.overstar.order.export.api.IOrderService;
 import com.overstar.order.export.domain.OrderBase;
 import com.overstar.order.export.domain.PayBill;
-import com.overstar.order.export.vo.Ret;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -16,8 +17,10 @@ import java.util.Map;
 @Service
 public class OrderService implements IOrderService {
     @Override
-    public Ret create(OrderBase formOrderBase, Long addressId, Long billId) {
-        return Ret.success("下单成功！",200);
+    public Result create(OrderBase formOrderBase, Long addressId, Long billId) {
+        BaseException baseException = new BaseException();
+        return Result.fail(baseException,"一个异常！");
+//        return Result.success("就是一个data");
     }
 
     @Override

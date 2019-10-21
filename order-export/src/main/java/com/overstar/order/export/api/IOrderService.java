@@ -1,8 +1,8 @@
 package com.overstar.order.export.api;
 
+import com.overstar.core.vo.Result;
 import com.overstar.order.export.domain.OrderBase;
 import com.overstar.order.export.domain.PayBill;
-import com.overstar.order.export.vo.Ret;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public interface IOrderService {
 	 * @param billId 发票id
 	 * @return
 	 */
-	Ret create(OrderBase formOrderBase, Long addressId, Long billId);
+	Result create(OrderBase formOrderBase, Long addressId, Long billId);
 
 	/**
 	 * 通知订单支付成功
