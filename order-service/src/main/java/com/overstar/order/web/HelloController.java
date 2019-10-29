@@ -1,6 +1,5 @@
 package com.overstar.order.web;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping(value = "/hello")
-    @SentinelResource("hello")
+//    @SentinelResource("hello")
     public String hello() {
         return "Hello Web MVC";
     }

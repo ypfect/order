@@ -1,6 +1,5 @@
 package com.overstar.order.web;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.overstar.order.abs.OrderFactory;
 import com.overstar.order.export.vo.StarOrderCreateParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     @Autowired
     private OrderFactory orderFactory;
-    @SentinelResource
+
     @RequestMapping("/create")
     public long orderCreat(StarOrderCreateParam orderCreateParam){
         return orderFactory.create(orderCreateParam);
