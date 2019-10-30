@@ -18,7 +18,7 @@ public class RedissonController {
     @Autowired
     private RedissonClient client;
 
-    @RequestMapping("/hello")
+    @RequestMapping("/helloRedis")
     public Ret helloRedisson(){
         RBucket<Object> test = client.getBucket("test");
         test.set("he咯");
