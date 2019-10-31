@@ -1,9 +1,9 @@
 package com.overstar.order.conf;
 
+import com.alibaba.dubbo.remoting.RemotingException;
 import com.overstar.core.exception.SystemErrorType;
 import com.overstar.core.vo.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.remoting.RemotingException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

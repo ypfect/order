@@ -1,6 +1,6 @@
 package com.overstar.order.conf;
 
-import org.apache.dubbo.config.ConsumerConfig;
+import com.alibaba.dubbo.config.ConsumerConfig;
 
 /**
  * @Description

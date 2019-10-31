@@ -1,5 +1,6 @@
 package com.overstar.order.web;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.overstar.search.export.api.ISearchAsYouTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class DubboController {
 
-    @Autowired
+    @Reference
     private ISearchAsYouTypeService asYouTypeService;
 
     @RequestMapping("/dubbo")

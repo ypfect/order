@@ -1,5 +1,6 @@
 package com.overstar.order.abs.handler;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.overstar.order.abs.AbstractOrderStepCreate;
 import com.overstar.order.abs.MQQueueSelector;
@@ -45,7 +46,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
     private OrderBaseMapper orderBaseMapper;
     @Autowired
     private OrderStarDetailMapper detailMapper;
-    @Autowired
+    @Reference
     public IOrderIndexService indexService;
     @Autowired
     private RocketMQTemplate rocketMQTemplate;

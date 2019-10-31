@@ -14,6 +14,7 @@ import java.util.Map;
  * @Author stanley.yu
  * @Date 2019/9/19 14:22
  */
+@com.alibaba.dubbo.config.annotation.Service
 @Service
 public class OrderService implements IOrderService {
     @Override
