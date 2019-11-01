@@ -1,9 +1,9 @@
 package com.overstar.order.web;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.overstar.search.export.api.ISearchAsYouTypeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +21,13 @@ public class DubboController {
     @Reference
     private ISearchAsYouTypeService asYouTypeService;
 
+    @NacosValue(value = "${test:test-nacos}" ,autoRefreshed = true)
+    private String test;
+
     @RequestMapping("/dubbo")
     public List<String> test() {
+        log.info(test);
         return asYouTypeService.search();
     }
+
 }
