@@ -10,7 +10,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @MapperScan("com.overstar.order.mapper")
 @SpringBootApplication
-@NacosPropertySource(dataId = "service_order", groupId = "base-service", autoRefreshed = true)
+@NacosPropertySource(dataId = "service_order", groupId = "BASE", autoRefreshed = true)
 @Slf4j
 public class OrderServiceApplication {
 
@@ -22,7 +22,7 @@ public class OrderServiceApplication {
     }
 
     //监听nacos配置文件的变化
-    @NacosConfigListener(dataId = "service_order", groupId = "base-service",timeout = 500)
+    @NacosConfigListener(dataId = "service_order", groupId = "BASE",timeout = 500)
     public void onChange(String newContent) {
        log.info("config has refresh ,content ={}",newContent);
     }
