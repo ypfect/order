@@ -17,7 +17,7 @@ public class OrderController {
     private OrderFactory orderFactory;
 
     @RequestMapping("/create")
-    public long orderCreat(StarOrderCreateParam orderCreateParam){
+    public long orderCreat(StarOrderCreateParam orderCreateParam) {
         return orderFactory.create(orderCreateParam);
     }
 }

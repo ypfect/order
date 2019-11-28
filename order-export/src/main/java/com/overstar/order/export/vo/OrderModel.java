@@ -21,5 +21,5 @@ public class OrderModel extends OrderBase {
     /**
      * 订单地址
      */
-    private OrderAddress orderAddress ;
+    private OrderAddress orderAddress;
 }

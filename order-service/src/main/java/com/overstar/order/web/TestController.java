@@ -28,7 +28,7 @@ public class TestController {
     private OrderFactory orderFactory;
 
     @RequestMapping("test")
-    public Ret testOrderCreate(){
+    public Ret testOrderCreate() {
         StarOrderCreateParam starOrderCreateParam = new StarOrderCreateParam();
         List<ShoppingCart> cartList = buildShoppingCarts();
         starOrderCreateParam.setShoppingCarts(cartList);
@@ -36,7 +36,7 @@ public class TestController {
         starOrderCreateParam.setOrderBase(orderBase);
         starOrderCreateParam.setOrderCategory(EnumOrderType.STAR_ORDER);
         long l = orderFactory.create(starOrderCreateParam);
-        return Ret.success("吃了",l);
+        return Ret.success("吃了", l);
     }
 
     private OrderBase buildOrderBase() {
@@ -44,11 +44,11 @@ public class TestController {
         base.setUserId(222l);
         base.setShipTime("晚上九点不见不散");
         base.setLeaveWord("dingdan xit ..");
-        base.setNeedBill((byte)1);
+        base.setNeedBill((byte) 1);
         base.setShipSendTime(System.nanoTime());
         base.setShipSendTime(System.nanoTime());
-        base.setOrderFrom((byte)2);
-        base.setSaleReturnState((byte)11);
+        base.setOrderFrom((byte) 2);
+        base.setSaleReturnState((byte) 11);
         return base;
     }
 
@@ -56,16 +56,16 @@ public class TestController {
         Sku sku = buildSku();
         ArrayList<ShoppingCart> shoppingCarts = new ArrayList<>();
 
-        for (int i = 0; i <5 ; i++) {
+        for (int i = 0; i < 5; i++) {
             ShoppingCart shoppingCart = new ShoppingCart();
             shoppingCart.setAmount(i);
             shoppingCart.setCreateTime(System.currentTimeMillis());
             shoppingCart.setProductId(2005L);
             shoppingCart.setSsoId(2006l);
             shoppingCart.setName("一元购");
-            shoppingCart.setSelected((byte)1);
+            shoppingCart.setSelected((byte) 1);
             shoppingCart.setStoreId(222l);
-            shoppingCart.setStoreName("明珠家具");
+            shoppingCart.setStoreName("家具");
             shoppingCart.setSkuMainPic("http://pic2.itrip.com/p/2018208-05842.jpg");
             shoppingCart.setSkuProperties("length=111;weight=22");
             shoppingCart.setSkuId(11l);

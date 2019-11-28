@@ -33,7 +33,7 @@ public class Ret implements Serializable {
         this.code = errorCodeEnum.getCode();
     }
 
-    public static Ret success(String msg,Object data){
-        return new Ret(msg,200,data,true);
+    public static Ret success(String msg, Object data) {
+        return new Ret(msg, 200, data, true);
     }
 }

@@ -19,23 +19,23 @@ public class RedissonController {
     private RedissonClient client;
 
     @RequestMapping("/helloRedis")
-    public Ret helloRedisson(){
+    public Ret helloRedisson() {
         RBucket<Object> test = client.getBucket("test");
         test.set("he咯");
-        return Ret.success("吃了",2);
+        return Ret.success("吃了", 2);
     }
 
 
     @RequestMapping("/get")
-    public Ret getRedissonValue(){
+    public Ret getRedissonValue() {
         RBucket<Object> test = client.getBucket("test");
-        return Ret.success("吃了",test.get());
+        return Ret.success("吃了", test.get());
     }
 
     @RequestMapping("/clear")
-    public Ret clear(){
+    public Ret clear() {
         RBucket<Object> test = client.getBucket("test");
 
-        return Ret.success("cleared",test.delete());
+        return Ret.success("cleared", test.delete());
     }
 }

@@ -48,7 +48,6 @@ public class OrderFactory {
     }
 
 
-
     public long create(OrderCreateParamBase createParamBase) {
         EnumOrderType orderCategory = createParamBase.getOrderCategory();
         IOrderStepService iOrderStepService = orderServiceMap.get(orderCategory);

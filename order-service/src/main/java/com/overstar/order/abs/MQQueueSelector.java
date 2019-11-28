@@ -15,9 +15,10 @@ import java.util.List;
 public class MQQueueSelector implements MessageQueueSelector {
     /**
      * 根据参数选择队列存放。一般用来保证消息的顺序性
-     * @param list  队列集合
+     *
+     * @param list    队列集合
      * @param message 消息
-     * @param o 参数
+     * @param o       参数
      * @return
      */
     @Override
@@ -25,12 +26,12 @@ public class MQQueueSelector implements MessageQueueSelector {
         String s = o.toString();
         int toInt = NumberUtils.toInt(s);
         //320
-        return list.get(toInt%list.size());
+        return list.get(toInt % list.size());
     }
 
     public static void main(String[] args) {
-        int size=4;
-        int businessId=22010;
+        int size = 4;
+        int businessId = 22010;
         System.out.println(businessId % size);
     }
 }

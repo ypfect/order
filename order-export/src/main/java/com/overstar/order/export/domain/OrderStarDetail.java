@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
+
 @Data
 @Table(name = "`order_star_detail`")
 public class OrderStarDetail implements Serializable {

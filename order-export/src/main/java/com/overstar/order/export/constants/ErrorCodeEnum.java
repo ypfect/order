@@ -5,9 +5,9 @@ package com.overstar.order.export.constants;
  * @Author stanley.yu
  * @Date 2019/9/19 11:10
  */
-public enum ErrorCodeEnum implements CommonEnum{
+public enum ErrorCodeEnum implements CommonEnum {
 
-    SYS_ERROR("系统异常！",5000),
+    SYS_ERROR("系统异常！", 5000),
     INDEX_ERROR("索引异常", 10001),
     ORDER_VALIDATE_ERROR("订单参数验证失败", 21000),
     USER_ID_REQUIRED("用户ID不能为空", 21001),

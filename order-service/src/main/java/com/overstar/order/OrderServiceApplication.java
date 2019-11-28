@@ -27,9 +27,9 @@ public class OrderServiceApplication {
     }
 
     //监听nacos配置文件的变化
-    @NacosConfigListener(dataId = "overstar-order.properties", groupId = "BASE",timeout = 500)
+    @NacosConfigListener(dataId = "overstar-order.properties", groupId = "BASE", timeout = 500)
     public void onChange(String newContent) {
-       log.info("config has refresh ,content ={}",newContent);
+        log.info("config has refresh ,content ={}", newContent);
     }
 
     @LoadBalanced

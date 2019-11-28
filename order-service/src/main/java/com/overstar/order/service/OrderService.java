@@ -20,7 +20,7 @@ public class OrderService implements IOrderService {
     @Override
     public Result create(OrderBase formOrderBase, Long addressId, Long billId) {
         BaseException baseException = new BaseException();
-        return Result.fail(baseException,"一个异常！");
+        return Result.fail(baseException, "一个异常！");
 //        return Result.success("就是一个data");
     }
 

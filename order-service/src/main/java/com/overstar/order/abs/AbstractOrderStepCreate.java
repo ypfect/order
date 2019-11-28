@@ -16,30 +16,29 @@ public abstract class AbstractOrderStepCreate implements IOrderStepService {
     @Override
     public long orderCreate(OrderCreateParamBase orderCreateParamBase) {
         boolean b = validateParam(orderCreateParamBase);
-        if (!b){
+        if (!b) {
             throw new OrderException(ErrorCodeEnum.ORDER_VALIDATE_ERROR);
         }
-        if (!amountCalculateHandler(orderCreateParamBase)){
+        if (!amountCalculateHandler(orderCreateParamBase)) {
             throw new OrderException(ErrorCodeEnum.ORDER_CALCULATE_ERROR);
         }
-        if (!orderDataPrepareHandler(orderCreateParamBase)){
+        if (!orderDataPrepareHandler(orderCreateParamBase)) {
             throw new OrderException(ErrorCodeEnum.ORDER_PREPARE_ERROR);
         }
 
-        if (!oderCreateHandler(orderCreateParamBase)){
+        if (!oderCreateHandler(orderCreateParamBase)) {
             //持久化失败了需要恢复数据，记录失败表格。定期扫描清洗数据
             throw new OrderException(ErrorCodeEnum.ORDER_PERSIS_ERROR);
         }
-        if (!orderLog(orderCreateParamBase)){
+        if (!orderLog(orderCreateParamBase)) {
             throw new OrderException(ErrorCodeEnum.ORDER_LOG_ERROR);
         }
-        if (!orderMsgInQueueHandler(orderCreateParamBase)){
+        if (!orderMsgInQueueHandler(orderCreateParamBase)) {
             throw new OrderException(ErrorCodeEnum.ORDER_QUEUE_ERROR);
         }
 
         return orderCreateParamBase.getOrderBase().getId();
     }
-
 
 
     @Override
@@ -55,6 +54,7 @@ public abstract class AbstractOrderStepCreate implements IOrderStepService {
 
     /**
      * 算价
+     *
      * @param orderCreateParamBase
      * @return
      */
@@ -62,6 +62,7 @@ public abstract class AbstractOrderStepCreate implements IOrderStepService {
 
     /**
      * 数据转换封装
+     *
      * @param orderCreateParamBase
      * @return
      */
@@ -69,6 +70,7 @@ public abstract class AbstractOrderStepCreate implements IOrderStepService {
 
     /**
      * 订单数据持久化
+     *
      * @param orderCreateParamBase
      * @return
      */
@@ -76,6 +78,7 @@ public abstract class AbstractOrderStepCreate implements IOrderStepService {
 
     /**
      * 日志记录
+     *
      * @param orderCreateParamBase
      * @return
      */
@@ -83,6 +86,7 @@ public abstract class AbstractOrderStepCreate implements IOrderStepService {
 
     /**
      * 加入延时队列  方便提示支付 以及超时取消操作
+     *
      * @param orderCreateParamBase
      * @return
      */

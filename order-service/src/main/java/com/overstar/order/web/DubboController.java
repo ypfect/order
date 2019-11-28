@@ -21,7 +21,7 @@ public class DubboController {
     @Reference
     private ISearchAsYouTypeService asYouTypeService;
 
-    @NacosValue(value = "${test:test-nacos}" ,autoRefreshed = true)
+    @NacosValue(value = "${test:test-nacos}", autoRefreshed = true)
     private String test;
 
     @RequestMapping("/dubbo")

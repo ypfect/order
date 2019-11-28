@@ -1,6 +1,7 @@
 package com.overstar.order.conf;
 
-import com.alibaba.dubbo.config.ConsumerConfig;
+
+import org.apache.dubbo.config.ConsumerConfig;
 
 /**
  * @Description
@@ -10,7 +11,7 @@ import com.alibaba.dubbo.config.ConsumerConfig;
 //@Configuration
 public class BeanCenter {
 
-//    @Bean
+    //    @Bean
     public ConsumerConfig consumerConfig() {
         ConsumerConfig consumerConfig = new ConsumerConfig();
         consumerConfig.setFilter("-sentinel.dubbo.consumer.filter");
