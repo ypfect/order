@@ -17,10 +17,22 @@ public class OrderBase implements Serializable{
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
-    private Integer userId;
-    private Long orderNo;
+    private int userId;
+    /**
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!                           !!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!  不能是包装类型，不能为null！！！     !!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!                              !!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     */
+    private long orderNo;
     //商户ID
-    private Long storeId;
+    private long storeId;
     private String storeName;
     //留言
     private String leaveWord;

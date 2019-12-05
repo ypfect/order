@@ -10,14 +10,14 @@ import javax.persistence.*;
 @Data
 @Table(name = "t_order_item")
 public class OrderStarDetail implements Serializable {
-    private Long id;
+    private long id;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
-    private Long orderNo;
-    private Long productId;
+    private long orderNo;
+    private long productId;
     private String productName;
-    private Integer userId;
-    private Long skuId;
+    private int userId;
+    private long skuId;
     private String skuMainPic;
     private String skuProperties;
     private BigDecimal marketPrice;
@@ -25,5 +25,4 @@ public class OrderStarDetail implements Serializable {
     private BigDecimal amount;
     private BigDecimal totalMoney;
     private static final long serialVersionUID = 1L;
-
 }

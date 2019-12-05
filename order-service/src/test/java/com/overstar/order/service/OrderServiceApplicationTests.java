@@ -34,13 +34,15 @@ public class OrderServiceApplicationTests {
     @Test
     public void testItem(){
         OrderStarDetail orderStarDetail = new OrderStarDetail();
+        orderStarDetail.setSkuId(111l);
         orderStarDetail.setOrderNo(222222l);
         orderStarDetail.setProductName("test");
         orderStarDetail.setMarketPrice(BigDecimal.ONE);
         orderStarDetail.setUpdateTime(LocalDateTime.now());
         orderStarDetail.setProductId(2222l);
+        orderStarDetail.setAmount(BigDecimal.ONE);
+        orderStarDetail.setSkuProperties("asdasd");
         orderStarDetail.setSkuMainPic("/asdwaw");
-        orderStarDetail.setSkuId(1l);
         orderStarDetail.setUserId(33);
         mapper.insert(orderStarDetail);
     }

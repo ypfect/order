@@ -3,6 +3,7 @@ package com.overstar.order.conf;
 import com.alibaba.dubbo.remoting.RemotingException;
 import com.overstar.core.exception.SystemErrorType;
 import com.overstar.core.vo.Result;
+import com.overstar.order.export.excption.OrderException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -24,10 +25,10 @@ import java.util.Objects;
 @RestControllerAdvice
 public class DefaultGlobalExceptionHandlerAdvice {
 
-    @ExceptionHandler(value = {RemotingException.class})
-    public Result sentinelException(RemotingException ex) {
-        log.error("触发熔断:{}", ex.getMessage());
-        return Result.fail(SystemErrorType.SYSTEM_BUSY);
+    @ExceptionHandler(value = {OrderException.class})
+    public Result sentinelException(OrderException ex) {
+        log.error("创单失败！:{}", ex.getMessage());
+        return Result.fail(ex.getErrorMessage());
     }
 
     @ExceptionHandler(value = {MissingServletRequestParameterException.class})

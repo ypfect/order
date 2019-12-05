@@ -64,7 +64,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         if (!present) {
             throw new OrderException(ErrorCodeEnum.NO_GOODS2BUY);
         }
-        if (createParam.getOrderBase().getUserId() == null) {
+        if (createParam.getOrderBase().getUserId() <=0) {
             throw new OrderException(ErrorCodeEnum.USER_ID_REQUIRED);
         }
         if (createParam.getOrderBase().getShipTime() == null) {
@@ -141,6 +141,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         // 设置订单信息
 //        orderBase.setOrderNo(333333333333333333l);
         orderBase.setStoreId(1L);
+        orderBase.setUserId(363825455);
         orderBase.setStoreName("overstar");
         orderBase.setState(OrderStateEnum.WAIT_PAY.getCode());
         orderBase.setCarriageFee(careyFee);
@@ -196,15 +197,15 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
             log.info("订单数据持久化,主订单，订单详情...");
             StarOrderCreateParam paramBase = (StarOrderCreateParam) orderCreateParamBase;
             OrderBase orderBase = paramBase.getOrderBase();
+            orderBase.setUserId(363825455);
             List<OrderStarDetail> details = paramBase.getDetails();
             insert = orderBaseMapper.insertUseGeneratedKeys(orderBase);
-            Long id = orderBase.getOrderNo();
+            long id = orderBase.getOrderNo();
             for (OrderStarDetail detail : details) {
-                detail.setOrderNo((long) id);
                 int min=222221;
                 int max=1000000000;
                 int num = min + (int)(Math.random() * (max-min+1));
-                detail.setId((long) num);
+                detail.setUserId(363825455);
                 detail.setOrderNo(id);
             }
 //            detailMapper.insertList(details);
