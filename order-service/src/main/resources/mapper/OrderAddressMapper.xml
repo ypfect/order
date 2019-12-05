@@ -10,7 +10,7 @@
         <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
         <result column="order_id" jdbcType="BIGINT" property="orderId"/>
         <result column="order_sn" jdbcType="CHAR" property="orderSn"/>
-        <result column="reciver" jdbcType="VARCHAR" property="reciver"/>
+        <result column="receiver" jdbcType="VARCHAR" property="receiver"/>
         <result column="area_code" jdbcType="VARCHAR" property="areaCode"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="full_address" jdbcType="VARCHAR" property="fullAddress"/>

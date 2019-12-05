@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -119,7 +120,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
 
         OrderBase orderBase = orderCreateParamBase.getOrderBase();
         orderBase.setTotalMoney(totalAmount);
-        String orderSn = CodeGenerateUtils.generateOrderSn(orderBase.getUserId());// 订单号
+//        String orderSn = CodeGenerateUtils.generateOrderSn(orderBase.getUserId());// 订单号
         // TODO .计算运费
         BigDecimal careyFee = BigDecimal.ZERO; // 运费
         // TODO .计算优惠金额（会员折扣）
@@ -140,7 +141,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         BigDecimal realMoney = totalAmount.add(careyFee).subtract(discountMoney).subtract(couponMoney).subtract(promotionMoney);
 
         // 设置订单信息
-        orderBase.setOrderNo(orderSn);
+//        orderBase.setOrderNo(orderSn);
         orderBase.setStoreId(1L);
         orderBase.setStoreName("overstar");
         orderBase.setState(OrderStateEnum.WAIT_PAY.getCode());
@@ -155,9 +156,9 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         orderBase.setPromotionMoney(promotionMoney);
         orderBase.setCommentStatus((byte) 0);
         orderBase.setDigest(digest.toString());
-        orderBase.setCreateTime(System.currentTimeMillis());
-        orderBase.setUpdateTime(System.currentTimeMillis());
-        orderBase.setLastPayTime(lastPayTime);
+        orderBase.setCreateTime(LocalDateTime.now());
+        orderBase.setUpdateTime(LocalDateTime.now());
+        orderBase.setLastPayTime(LocalDateTime.now());
         return true;
     }
 
@@ -172,10 +173,10 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
             Sku sku = vipCart.getSku();
             OrderStarDetail orderDetail = new OrderStarDetail();
             orderDetail.setAmount(new BigDecimal(vipCart.getAmount()));
-            orderDetail.setCreateTime(System.currentTimeMillis());
+            orderDetail.setCreateTime(LocalDateTime.now());
             orderDetail.setMarketPrice(sku.getMarketPrice());
-            orderDetail.setName(vipCart.getName());
-            orderDetail.setOrderId(orderBase.getId());
+            orderDetail.setProductName(vipCart.getName());
+            orderDetail.setOrderId(orderBase.getOrderNo());
             orderDetail.setPrice(sku.getPrice());
             orderDetail.setProductId(vipCart.getProductId());
             orderDetail.setSkuId(vipCart.getSkuId());
@@ -199,7 +200,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
             OrderBase orderBase = paramBase.getOrderBase();
             List<OrderStarDetail> details = paramBase.getDetails();
             insert = orderBaseMapper.insertUseGeneratedKeys(orderBase);
-            Long id = orderBase.getId();
+            Long id = orderBase.getOrderNo();
             for (OrderStarDetail detail : details) {
                 detail.setOrderId((long) insert);
                 detail.setOrderId(id);
@@ -272,10 +273,10 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
     public void sendScheduldeMsg() {
         OrderBase.OrderBaseBuilder orderBaseBuilder = OrderBase.builder()
                 .digest("测试订单")
-                .orderNo("3205581174581")
+                .orderNo(3205581174581l)
                 .digest("简单的备注秒速")
                 .couponMoney(new BigDecimal(1.22))
-                .finishedTime(new Date().getTime());
+                .finishedTime(LocalDateTime.now());
 
         Message<String> message = MessageBuilder
                 .withPayload(JSON.toJSONString(orderBaseBuilder.build()))

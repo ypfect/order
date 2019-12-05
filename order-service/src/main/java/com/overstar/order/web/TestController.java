@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,11 +43,11 @@ public class TestController {
     private OrderBase buildOrderBase() {
         OrderBase base = new OrderBase();
         base.setUserId(222l);
-        base.setShipTime("晚上九点不见不散");
+        base.setShipTime(LocalDateTime.MAX);
         base.setLeaveWord("dingdan xit ..");
         base.setNeedBill((byte) 1);
-        base.setShipSendTime(System.nanoTime());
-        base.setShipSendTime(System.nanoTime());
+        base.setShipSendTime(LocalDateTime.now());
+        base.setShipSendTime(LocalDateTime.now());
         base.setOrderFrom((byte) 2);
         base.setSaleReturnState((byte) 11);
         return base;

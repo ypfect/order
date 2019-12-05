@@ -10,7 +10,7 @@
     <result column="update_time" jdbcType="BIGINT" property="updateTime" />
     <result column="order_id" jdbcType="BIGINT" property="orderId" />
     <result column="product_id" jdbcType="BIGINT" property="productId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="name" jdbcType="VARCHAR" property="productName" />
     <result column="sku_id" jdbcType="BIGINT" property="skuId" />
     <result column="sku_main_pic" jdbcType="VARCHAR" property="skuMainPic" />
     <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />

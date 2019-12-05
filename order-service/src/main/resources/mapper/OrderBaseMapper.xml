@@ -5,7 +5,6 @@
         <!--
           WARNING - @mbg.generated
         -->
-        <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="create_time" jdbcType="BIGINT" property="createTime"/>
         <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
@@ -35,7 +34,7 @@
         <result column="ship_time" jdbcType="VARCHAR" property="shipTime"/>
         <result column="ship_send_time" jdbcType="BIGINT" property="shipSendTime"/>
         <result column="digest" jdbcType="VARCHAR" property="digest"/>
-        <result column="sale_return_tate" jdbcType="TINYINT" property="saleReturnState"/>
+        <result column="sale_return_state" jdbcType="TINYINT" property="saleReturnState"/>
         <result column="return_order_no" jdbcType="CHAR" property="returnOrderNo"/>
         <result column="change_order_no" jdbcType="CHAR" property="changeOrderNo"/>
         <result column="need_bill" jdbcType="TINYINT" property="needBill"/>

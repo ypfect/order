@@ -37,7 +37,7 @@ public abstract class AbstractOrderStepCreate implements IOrderStepService {
             throw new OrderException(ErrorCodeEnum.ORDER_QUEUE_ERROR);
         }
 
-        return orderCreateParamBase.getOrderBase().getId();
+        return orderCreateParamBase.getOrderBase().getOrderNo();
     }
 
 
