@@ -42,8 +42,8 @@ public class TestController {
 
     private OrderBase buildOrderBase() {
         OrderBase base = new OrderBase();
-        base.setUserId(222l);
-        base.setShipTime(LocalDateTime.MAX);
+        base.setUserId(222);
+        base.setShipTime(LocalDateTime.now());
         base.setLeaveWord("dingdan xit ..");
         base.setNeedBill((byte) 1);
         base.setShipSendTime(LocalDateTime.now());

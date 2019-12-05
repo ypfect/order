@@ -11,11 +11,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderBase implements Serializable {
+@EqualsAndHashCode
+@Table(name = "t_order")
+public class OrderBase implements Serializable{
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
-    private Long userId;
+    private Integer userId;
     private Long orderNo;
     //商户ID
     private Long storeId;
@@ -122,32 +124,26 @@ public class OrderBase implements Serializable {
      * 退换货状态
      */
     private Byte saleReturnState;
-
     /**
      * 退货单号
      */
     private String returnOrderNo;
-
     /**
      * 换货单号
      */
     private String changeOrderNo;
-
     /**
      * 是否需要发票
      */
     private Byte needBill;
-
     /**
      * 确认收货截止时间
      */
     private LocalDateTime lastConfirmShipTime;
-
     /**
      * 支付截止时间
      */
     private LocalDateTime lastPayTime;
-
     private static final long serialVersionUID = 1L;
 
 }

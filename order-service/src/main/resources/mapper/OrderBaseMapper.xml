@@ -5,10 +5,10 @@
         <!--
           WARNING - @mbg.generated
         -->
-        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
-        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
-        <result column="user_id" jdbcType="BIGINT" property="userId"/>
-        <result column="order_no" jdbcType="CHAR" property="orderNo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="order_no" jdbcType="BIGINT" property="orderNo"/>
         <result column="store_id" jdbcType="BIGINT" property="storeId"/>
         <result column="store_name" jdbcType="VARCHAR" property="storeName"/>
         <result column="leave_word" jdbcType="VARCHAR" property="leaveWord"/>
@@ -20,25 +20,25 @@
         <result column="real_money" jdbcType="DECIMAL" property="realMoney"/>
         <result column="pay_money" jdbcType="DECIMAL" property="payMoney"/>
         <result column="pay_channel" jdbcType="TINYINT" property="payChannel"/>
-        <result column="pay_time" jdbcType="BIGINT" property="payTime"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
         <result column="coupon_id" jdbcType="BIGINT" property="couponId"/>
         <result column="coupon_money" jdbcType="DECIMAL" property="couponMoney"/>
         <result column="promotion_id" jdbcType="INTEGER" property="promotionId"/>
         <result column="promotion_money" jdbcType="DECIMAL" property="promotionMoney"/>
         <result column="order_from" jdbcType="TINYINT" property="orderFrom"/>
-        <result column="finished_time" jdbcType="BIGINT" property="finishedTime"/>
+        <result column="finished_time" jdbcType="TIMESTAMP" property="finishedTime"/>
         <result column="comment_status" jdbcType="TINYINT" property="commentStatus"/>
-        <result column="comment_time" jdbcType="BIGINT" property="commentTime"/>
+        <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime"/>
         <result column="ship_store" jdbcType="BIGINT" property="shipStore"/>
         <result column="ship_no" jdbcType="VARCHAR" property="shipNo"/>
-        <result column="ship_time" jdbcType="VARCHAR" property="shipTime"/>
-        <result column="ship_send_time" jdbcType="BIGINT" property="shipSendTime"/>
+        <result column="ship_time" jdbcType="TIMESTAMP" property="shipTime"/>
+        <result column="ship_send_time" jdbcType="TIMESTAMP" property="shipSendTime"/>
         <result column="digest" jdbcType="VARCHAR" property="digest"/>
         <result column="sale_return_state" jdbcType="TINYINT" property="saleReturnState"/>
         <result column="return_order_no" jdbcType="CHAR" property="returnOrderNo"/>
         <result column="change_order_no" jdbcType="CHAR" property="changeOrderNo"/>
         <result column="need_bill" jdbcType="TINYINT" property="needBill"/>
-        <result column="last_confirm_ship_time" jdbcType="BIGINT" property="lastConfirmShipTime"/>
-        <result column="last_pay_time" jdbcType="BIGINT" property="lastPayTime"/>
+        <result column="last_confirm_ship_time" jdbcType="TIMESTAMP" property="lastConfirmShipTime"/>
+        <result column="last_pay_time" jdbcType="TIMESTAMP" property="lastPayTime"/>
     </resultMap>
 </mapper>

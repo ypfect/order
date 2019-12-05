@@ -1,5 +1,6 @@
 package com.overstar.order;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
 import com.overstar.order.conf.ApplicationEventListener;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @MapperScan("com.overstar.order.mapper")
-@SpringBootApplication
+@SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
 @Slf4j
 @EnableDiscoveryClient
 @RefreshScope

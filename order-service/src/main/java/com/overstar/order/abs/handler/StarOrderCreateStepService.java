@@ -29,9 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -141,7 +139,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         BigDecimal realMoney = totalAmount.add(careyFee).subtract(discountMoney).subtract(couponMoney).subtract(promotionMoney);
 
         // 设置订单信息
-//        orderBase.setOrderNo(orderSn);
+//        orderBase.setOrderNo(333333333333333333l);
         orderBase.setStoreId(1L);
         orderBase.setStoreName("overstar");
         orderBase.setState(OrderStateEnum.WAIT_PAY.getCode());
@@ -176,7 +174,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
             orderDetail.setCreateTime(LocalDateTime.now());
             orderDetail.setMarketPrice(sku.getMarketPrice());
             orderDetail.setProductName(vipCart.getName());
-            orderDetail.setOrderId(orderBase.getOrderNo());
+            orderDetail.setOrderNo(orderBase.getOrderNo());
             orderDetail.setPrice(sku.getPrice());
             orderDetail.setProductId(vipCart.getProductId());
             orderDetail.setSkuId(vipCart.getSkuId());
@@ -202,10 +200,15 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
             insert = orderBaseMapper.insertUseGeneratedKeys(orderBase);
             Long id = orderBase.getOrderNo();
             for (OrderStarDetail detail : details) {
-                detail.setOrderId((long) insert);
-                detail.setOrderId(id);
+                detail.setOrderNo((long) id);
+                int min=222221;
+                int max=1000000000;
+                int num = min + (int)(Math.random() * (max-min+1));
+                detail.setId((long) num);
+                detail.setOrderNo(id);
             }
-            detailMapper.insertList(details);
+//            detailMapper.insertList(details);
+            detailMapper.insert(details.get(0));
 
             //调用es服务处理索引数据
 //            boolean b = indexService.indexOrderInfo(orderBase, details);

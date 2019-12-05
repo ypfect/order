@@ -6,12 +6,13 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="BIGINT" property="createTime" />
-    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
-    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="order_no" jdbcType="BIGINT" property="orderNo" />
     <result column="product_id" jdbcType="BIGINT" property="productId" />
     <result column="name" jdbcType="VARCHAR" property="productName" />
     <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="sku_main_pic" jdbcType="VARCHAR" property="skuMainPic" />
     <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />
     <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
