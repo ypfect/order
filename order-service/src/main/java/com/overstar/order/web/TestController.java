@@ -44,12 +44,21 @@ public class TestController {
         OrderBase base = new OrderBase();
         base.setUserId(222);
         base.setShipTime(LocalDateTime.now());
-        base.setLeaveWord("dingdan xit ..");
+        base.setLeaveWord("留言..");
         base.setNeedBill((byte) 1);
         base.setShipSendTime(LocalDateTime.now());
         base.setShipSendTime(LocalDateTime.now());
         base.setOrderFrom((byte) 2);
         base.setSaleReturnState((byte) 11);
+        base.setNeedBill((byte)1);
+        base.setSaleReturnState((byte)1);
+        base.setCommentStatus((byte)3);
+        base.setTotalMoney(BigDecimal.ONE);
+        base.setDiscountMoney(BigDecimal.ONE);
+        base.setRealMoney(BigDecimal.ONE);
+        base.setState((byte)1);
+        base.setPayMoney(BigDecimal.ONE);
+        base.setCarriageFee(BigDecimal.ONE);
         return base;
     }
 

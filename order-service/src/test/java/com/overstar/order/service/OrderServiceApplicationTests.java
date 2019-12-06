@@ -1,7 +1,9 @@
 package com.overstar.order.service;
 
 import com.overstar.order.OrderServiceApplication;
+import com.overstar.order.export.domain.OrderBase;
 import com.overstar.order.export.domain.OrderStarDetail;
+import com.overstar.order.mapper.OrderBaseMapper;
 import com.overstar.order.mapper.OrderStarDetailMapper;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.junit.Test;
@@ -24,6 +26,8 @@ public class OrderServiceApplicationTests {
 
     @Autowired
     private OrderStarDetailMapper mapper;
+    @Autowired
+    private OrderBaseMapper orderBase;
 
     @Test
     public void contextLoads() {
@@ -45,6 +49,32 @@ public class OrderServiceApplicationTests {
         orderStarDetail.setSkuMainPic("/asdwaw");
         orderStarDetail.setUserId(33);
         mapper.insert(orderStarDetail);
+    }
+
+
+
+
+    @Test
+    public void testOrder(){
+        OrderBase base = new OrderBase();
+        base.setUserId(222);
+        base.setShipTime(LocalDateTime.now());
+        base.setLeaveWord("dingdan xit ..");
+        base.setNeedBill((byte) 1);
+        base.setShipSendTime(LocalDateTime.now());
+        base.setShipSendTime(LocalDateTime.now());
+        base.setOrderFrom((byte) 2);
+        base.setSaleReturnState((byte) 11);
+        base.setNeedBill((byte)1);
+        base.setSaleReturnState((byte)1);
+        base.setCommentStatus((byte)3);
+        base.setTotalMoney(BigDecimal.ONE);
+        base.setDiscountMoney(BigDecimal.ONE);
+        base.setRealMoney(BigDecimal.ONE);
+        base.setState((byte)1);
+        base.setPayMoney(BigDecimal.ONE);
+        base.setCarriageFee(BigDecimal.ONE);
+        orderBase.insert(base);
     }
 
 }

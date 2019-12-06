@@ -12,7 +12,7 @@
     <result column="product_id" jdbcType="BIGINT" property="productId" />
     <result column="name" jdbcType="VARCHAR" property="productName" />
     <result column="sku_id" jdbcType="BIGINT" property="skuId" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="sku_main_pic" jdbcType="VARCHAR" property="skuMainPic" />
     <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />
     <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
