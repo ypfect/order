@@ -5,3 +5,21 @@
 -Dnacos.config.server-addr=aliyun:8848
 -Dnacos.config.namespace=1c42d69d-3430-423b-93e9-2cea5cebb9e4
 -Dnacos.config.enabled=true
+
+
+
+truncate table overstar_order_0.t_order_item_1;
+truncate table overstar_order_0.t_order_item_0;
+truncate table overstar_order_0.t_order_1;
+truncate table overstar_order_0.t_order_0;
+truncate table overstar_order_0.t_order;
+truncate table overstar_order_0.t_order_item;
+
+
+
+truncate table overstar_order_1.t_order_item_1;
+truncate table overstar_order_1.t_order_item_0;
+truncate table overstar_order_1.t_order_1;
+truncate table overstar_order_1.t_order_0;
+truncate table overstar_order_1.t_order;
+truncate table overstar_order_1.t_order_item;
