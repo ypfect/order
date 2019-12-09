@@ -27,7 +27,17 @@
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
 
-        <commentGenerator type="com.itrip.mybatis.generator.CustomCommentGenerator">
+        <!--        <commentGenerator type="com.itrip.mybatis.generator.CustomCommentGenerator">-->
+        <!--            <property name="caseSensitive" value="true"/>-->
+        <!--            <property name="forceAnnotation" value="true"/>-->
+        <!--            <property name="beginningDelimiter" value="`"/>-->
+        <!--            <property name="endingDelimiter" value="`"/>-->
+        <!--        </commentGenerator>-->
+        <commentGenerator type="com.overstar.order.conf.CommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
             <property name="caseSensitive" value="true"/>
             <property name="forceAnnotation" value="true"/>
             <property name="beginningDelimiter" value="`"/>
@@ -45,21 +55,21 @@
         </javaTypeResolver>
         <!-- 生成模型的包名和位置-->
         <javaModelGenerator targetPackage="com.overstar.order.export.domain"
-                            targetProject="../order-export/src/main/java">
+                            targetProject="order-export\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="order-service\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.overstar.order.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.overstar.order.mapper" targetProject="order-service\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!--		<table tableName="order_base" />-->
-        <table tableName="order_star_detail"/>
-        <!--		<table tableName="order_address" />-->
+<!--        <table tableName="order_star_detail"/>-->
+        <table tableName="employee"/>
     </context>
 </generatorConfiguration>
