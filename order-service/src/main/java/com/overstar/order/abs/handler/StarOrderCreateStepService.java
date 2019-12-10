@@ -14,6 +14,7 @@ import com.overstar.order.export.vo.Sku;
 import com.overstar.order.export.vo.StarOrderCreateParam;
 import com.overstar.order.mapper.OrderBaseMapper;
 import com.overstar.order.mapper.OrderStarDetailMapper;
+import com.overstar.order.mapper.ReturnKeyMapper;
 import com.overstar.order.utils.CodeGenerateUtils;
 import com.overstar.search.export.api.IOrderIndexService;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,8 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
 
     @Autowired
     private OrderBaseMapper orderBaseMapper;
+    @Autowired
+    private ReturnKeyMapper returnKeyMapper;
     @Autowired
     private OrderStarDetailMapper detailMapper;
     @Reference
@@ -198,14 +201,15 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
             OrderBase orderBase = paramBase.getOrderBase();
             orderBase.setUserId(363825455);
             List<OrderStarDetail> details = paramBase.getDetails();
-            int i = orderBaseMapper.insertUseGeneratedKeys(orderBase);
+//            int i = orderBaseMapper.insertUseGeneratedKeys(orderBase);
+            returnKeyMapper.insertUseGeneratedKeys(orderBase);
             long id = orderBase.getOrderNo();
             for (OrderStarDetail detail : details) {
                 int min=222221;
                 int max=1000000000;
                 int num = min + (int)(Math.random() * (max-min+1));
                 detail.setUserId(num);
-                detail.setOrderNo(i);
+                detail.setOrderNo(id);
             }
             detailMapper.insertList(details);
             //调用es服务处理索引数据
