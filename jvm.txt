@@ -23,3 +23,11 @@ truncate table overstar_order_1.t_order_1;
 truncate table overstar_order_1.t_order_0;
 truncate table overstar_order_1.t_order;
 truncate table overstar_order_1.t_order_item;
+
+
+
+
+
+
+drop database if exists mall;
+create database mall default character set utf8mb4 collate utf8mb4_general_ci;

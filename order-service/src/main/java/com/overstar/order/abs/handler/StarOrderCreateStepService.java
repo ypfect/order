@@ -192,29 +192,25 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
     @Override
     @Transactional
     public boolean oderCreateHandler(OrderCreateParamBase orderCreateParamBase) {
-        int insert = 0;
         try {
             log.info("订单数据持久化,主订单，订单详情...");
             StarOrderCreateParam paramBase = (StarOrderCreateParam) orderCreateParamBase;
             OrderBase orderBase = paramBase.getOrderBase();
             orderBase.setUserId(363825455);
             List<OrderStarDetail> details = paramBase.getDetails();
-            insert = orderBaseMapper.insertUseGeneratedKeys(orderBase);
+            int i = orderBaseMapper.insertUseGeneratedKeys(orderBase);
             long id = orderBase.getOrderNo();
             for (OrderStarDetail detail : details) {
                 int min=222221;
                 int max=1000000000;
                 int num = min + (int)(Math.random() * (max-min+1));
-                detail.setUserId(363825455);
-                detail.setOrderNo(id);
+                detail.setUserId(num);
+                detail.setOrderNo(i);
             }
-//            detailMapper.insertList(details);
-            detailMapper.insert(details.get(0));
-
+            detailMapper.insertList(details);
             //调用es服务处理索引数据
-//            boolean b = indexService.indexOrderInfo(orderBase, details);
-//            System.out.println(b+"==================================");
-
+            boolean b = indexService.indexOrderInfo(orderBase, details);
+            log.info("创单已经索引到es ..");
         } catch (Exception e) {
             e.printStackTrace();
             //todo 删除订单信息和详细信息
@@ -222,6 +218,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         }
         return true;
     }
+
 
     @Override
     public boolean orderLog(OrderCreateParamBase orderCreateParamBase) {
