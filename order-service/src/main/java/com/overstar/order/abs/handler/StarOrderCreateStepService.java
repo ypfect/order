@@ -1,6 +1,8 @@
 package com.overstar.order.abs.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.overstar.core.constants.MessageOrderTags;
+import com.overstar.core.constants.MessageTopics;
 import com.overstar.order.abs.AbstractOrderStepCreate;
 import com.overstar.order.abs.MQQueueSelector;
 import com.overstar.order.export.constants.ErrorCodeEnum;
@@ -15,12 +17,9 @@ import com.overstar.order.export.vo.StarOrderCreateParam;
 import com.overstar.order.mapper.OrderBaseMapper;
 import com.overstar.order.mapper.OrderStarDetailMapper;
 import com.overstar.order.mapper.ReturnKeyMapper;
-import com.overstar.order.utils.CodeGenerateUtils;
 import com.overstar.search.export.api.IOrderIndexService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
-import org.apache.rocketmq.client.exception.MQClientException;
-import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
@@ -33,7 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -248,14 +248,14 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         log.info("发送测试消息到es系统处理...");
         Message<String> message = MessageBuilder
                 .withPayload(JSON.toJSONString(orderCreateParamBase))
-                .setHeader("oj8k", "吃了！")
-                .setHeader(RocketMQHeaders.MESSAGE_ID, "C320320320320")
-                .setHeader(RocketMQHeaders.KEYS, "keya key")
-                .setHeader(RocketMQHeaders.TRANSACTION_ID, "320320320320")
+                .setHeader("User_id", orderCreateParamBase.getOrderBase().getUserId())
+                .setHeader(RocketMQHeaders.MESSAGE_ID, orderCreateParamBase.getOrderBase().getOrderNo())
+                .setHeader(RocketMQHeaders.KEYS, orderCreateParamBase.getOrderBase().getOrderNo())
+                .setHeader(RocketMQHeaders.TRANSACTION_ID, orderCreateParamBase.getOrderBase().getOrderNo())
                 .build();
         //只能发送到单个tag，如果需要整个topic都可以收到的话，可以不指定tag
-        String tags = "order_create";
-        String topicTags = "testMQ:" + tags;
+        String topicTags = MessageTopics.OVER_STAR_ORDER+ ":" + MessageOrderTags.ORDER_CREATE;
+        //防止报错连接90x100端口连接失败
         rocketMQTemplate.getProducer().setVipChannelEnabled(false);
         rocketMQTemplate.setMessageQueueSelector(new MQQueueSelector());
         rocketMQTemplate.asyncSendOrderly(topicTags, message, String.valueOf(orderCreateParamBase.getOrderBase().getOrderNo()), new SendCallback() {
@@ -281,7 +281,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
     public void sendScheduldeMsg() {
         OrderBase.OrderBaseBuilder orderBaseBuilder = OrderBase.builder()
                 .digest("测试订单")
-                .orderNo(3205581174581l)
+                .orderNo(3205581174581L)
                 .digest("简单的备注秒速")
                 .couponMoney(new BigDecimal(1.22))
                 .finishedTime(LocalDateTime.now());
