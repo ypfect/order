@@ -8,6 +8,10 @@
 
 
 
+
+
+
+
 truncate table overstar_order_0.t_order_item_1;
 truncate table overstar_order_0.t_order_item_0;
 truncate table overstar_order_0.t_order_1;

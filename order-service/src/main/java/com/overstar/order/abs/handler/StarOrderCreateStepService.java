@@ -19,6 +19,9 @@ import com.overstar.order.utils.CodeGenerateUtils;
 import com.overstar.search.export.api.IOrderIndexService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
+import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;
@@ -204,6 +207,7 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
 //            int i = orderBaseMapper.insertUseGeneratedKeys(orderBase);
             returnKeyMapper.insertUseGeneratedKeys(orderBase);
             long id = orderBase.getOrderNo();
+            orderBase.setOrderNo(id);
             for (OrderStarDetail detail : details) {
                 int min=222221;
                 int max=1000000000;
@@ -252,22 +256,21 @@ public class StarOrderCreateStepService extends AbstractOrderStepCreate {
         //只能发送到单个tag，如果需要整个topic都可以收到的话，可以不指定tag
         String tags = "order_create";
         String topicTags = "testMQ:" + tags;
+        rocketMQTemplate.getProducer().setVipChannelEnabled(false);
+        rocketMQTemplate.setMessageQueueSelector(new MQQueueSelector());
+        rocketMQTemplate.asyncSendOrderly(topicTags, message, String.valueOf(orderCreateParamBase.getOrderBase().getOrderNo()), new SendCallback() {
+            @Override
+            public void onSuccess(SendResult sendResult) {
+                log.info("消息发送成功！res={}", JSON.toJSONString(sendResult));
+            }
 
-//        //设置生产者发布选择器
-//        rocketMQTemplate.setMessageQueueSelector(new MQQueueSelector());
-//        rocketMQTemplate.asyncSendOrderly(topicTags, message, String.valueOf(320320320), new SendCallback() {
-//            @Override
-//            public void onSuccess(SendResult sendResult) {
-//                log.info("消息发送成功！res={}", JSON.toJSONString(sendResult));
-//            }
-//
-//            @Override
-//            public void onException(Throwable throwable) {
-//                log.error("消息发送失败", throwable);
-//            }
-//        }, 2000);
+            @Override
+            public void onException(Throwable throwable) {
+                log.error("消息发送失败", throwable);
+            }
+        }, 2000);
 
-        sendScheduldeMsg();
+//        sendScheduldeMsg();
         return true;
     }
 
